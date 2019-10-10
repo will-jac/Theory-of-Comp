@@ -1,0 +1,13 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2019-09-05T15:15:01-05:00
+
+====== Induction ======
+Created Thursday 05 September 2019
+
+* We need a base case
+	* Prove that this claim is true for some small value of the parameter (say k ) involved in the claim
+* We need ot state the induction hypotheses
+	* Assume that the claim is true for some value of the parameter that is at least as big as the value used in the base case
+* Induction step
+	* Trey to prove the claim for the value of the parameter that is the next integer above the one we used for the induction hypotheseis

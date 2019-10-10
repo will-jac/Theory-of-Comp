@@ -1,0 +1,108 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2019-08-29T15:45:23-05:00
+
+====== Finite State Machines ======
+Created Thursday 29 August 2019
+
+NFA = Nondeterministic Finite Automata
+DFA = Deterministic Finite Automata
+
+====== NFA ======
+NFA is a Nondeterministic Finite Automata defined by the 5-tuple (Q, Σ , δ, q_{0}, F) where:
+* Q is a finite set of states
+* Σ is a finite alphabet
+* q_{0} is the stating state
+* f is the set of accepting states
+	* All of the above are the same as a DFA
+* δ = Q x Σuλ = Q x Σ_{λ }= P(Q)
+	* All possible subsets of Q
+	* For DFA's, this is δ = Q x Σ
+
+NFAs may have:
+* Multiple arrows leaving from a state with the same symbol
+* not all arrows for some symbol are listed
+* may have 0+ arrows with the symbol λ 
+
+== How NFA's compute: ==
+1. We reach a state with multiple ways to procede
+	* The machine 'splits' itself and follows each path in **parallel**
+2. We reach a state where no branch corresponds to the symbol that we need
+	* That particular copy of the machine dies
+3. If any of the copies of the machin is in the accept state at the end of the input
+	* The NFA accepts
+4. States with an λ symbol on an exiting arrow
+	* Split into multiple copies
+
+Nondeterminism can be seen as "parallel computation" with all the different machines running in parallel
+* as a tree of possibilities
+
+
+== Example: ==
+{{.\diagram.png?type=diagram}}
+Input: 0 1 0 1 1 0
+
+
+accepts the string (drew a diagram)
+
+
+== Example: ==
+Here's an NFA:
+{{.\diagram001.png?type=diagram}}
+
+
+| δ  | 0    | 1          | λ    |
+|----|------|------------|------|
+| q1 | {q1} | {q1,q2,q3} | Ø    |
+| q2 | {q3} | Ø          | {q3} |
+| q3 | Ø    | {q4}       | Ø    |
+| q4 | {q4} | {q4}       | Ø    |
+
+
+
+===== NFA and DFA proof =====
+
+**Definition**
+Two machines are equal iff they recognize the same language
+(L(M_{1})) = (L(M_{2}))
+**Theorem**
+Every NFA has an equivalent DFA
+**Proof Idea**
+Create a DFA M that simulates the behavior of the NFA N
+* At any point in time we need to keep track on M all the states where N is currently at (N has a copy of itself in one of these states)
+
+All w need to do is define the 5-tuple
+**Proof**
+[Assume for now no λ-transitions]
+* Q_{M }= P(Q_{N})
+	* We need one state in M for every one of the 2^{|Q|} subsets in N
+* Σ_{M} = Σ_{N}
+* q_{0,M }= {q_{0,N}}
+* F_{M }= {{.\equation.png?type=equation}}
+* On a symbol a \in Σ 
+	{{.\equation001.png?type=equation}}
+	* R is a set of states in Q_M
+	* r is a state in Q_N
+	* δ_N outputs a set
+* For an NFA:
+	{{.\equation002.png?type=equation}}
+
+Now take into account the λ transitions:
+for R \in Q_M:
+{{.\equation003.png?type=equation}}
+As such, the set R ⊆ Λ(R)
+* this is because if you start in a state and you don't follow any arrows, you still have a set of the state you are in. When you travel to more states, you increase the number of states in the set, therefore R is a subset of the set of reachable states Λ(R)
+So:
+{{.\equation004.png?type=equation}}
+
+
+
+
+
+
+
+
+
+
+
+

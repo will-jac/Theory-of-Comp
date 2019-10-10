@@ -1,0 +1,216 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2019-08-22T15:07:26-05:00
+
+====== Definitions & Terms ======
+Created Thursday 22 August 2019
+
+Computational Complexity:
+* How easy or hard a particular problem is
+	* examples:
+		* shortest pathi n a graph
+		* sort a bunch of numbers in an array
+		* TSP
+	* can be analyzed using Big O / Big Omega notation
+		* Ω(n lg n) refers to a lower bound of n lg n
+* What kind of properties make a particular problem easy or hard?
+	* We don't fully understand this yet
+
+Computability Theory:
+* Asks the more basic question as to whether a particular problem is solvable or not
+	* not everything is solvable
+
+Automata:
+* Basic definitions and properties of mathematical models of computation
+* Applications include
+	* Regular languages
+	* String matching
+	* Finite state machines
+	* Compilers
+	* Grammars
+	* Programming languages
+	* AI
+
+====== Math terms ======
+
+=== Set ===
+set: unordered collection of unique elements
+* Repition does not matter - forget about it
+	* eg {1,2,5} == {1,2,2,5}
+* Order also does not matter
+	* eg {1,2,5} == {5,1,2}
+* Can be finite or infinite
+	* eg {1,2,5}
+	* eg the set of all even numbers {0,2,4,6,...}
+
+== Empty Set ==
+* One 'special' set is the //empty //set: Ø = {}
+
+== Subset ==
+* B is a subset of A:
+	{{.\equation.png?type=equation}}
+* Empty set is a subset of every set
+* Every set is a subset of itself
+
+== Power Set ==
+* power set of set A: Set containing every subset of set A
+	* eg: A = {a,b}
+	* Powerset of A = { {}, {a}, {b}, {a, b} }
+* Every power set contains the 'empty' set
+* Powerset of A, for A having k elements, has 2^{k }elements
+	* number or ways (permutations?) in which we can select some of the k elements in A
+
+=== Sequences and Tuples ===
+* A sequence is an ordered list of non-unique elements
+* We put it inside parentheses
+	* eg: (1,2,5) != (1,2,2,5)
+* Finite sequences = tuples
+* infinite sequences (eg all whole numbers)
+* A k-tuple is a sequence of k elements
+	* a 2-tuple is called a pair
+
+=== Cartesian Product ===
+C = A x B is called the cross product of the sets A and B
+* eg: A = {a,b}
+* B = {1,2,3}
+* C = A x B = {(a,1),(a,2),(a,3),(b,1),(b,2),(b,3)}
+* note that (2,a) is not in C
+	* order matters in the cross product - A x B != B x A (generally)
+
+A^{k} = A x A x ... x A
+			  ^^ k times
+
+
+=== Functions ===
+A function f:D -> R has //domain //D and //range// R
+f(a) is the same value no matter how many times we ask f <--- ???
+
+**Arity**
+the arity of f is the number of inputs (arguments) that f takes
+
+== Onto ==
+Covers everythng in the range at least once
+
+== 1-1 ==
+if a != b, then f(a) != f(b)
+* one unique output for every input
+
+== Bijective ==
+A function that is both 1-1 and onto
+
+{{..\Attachements\onto_1-1.jpg?width=400}}
+
+
+== Predicate/relation ==
+A predicate or relation is a functoin whose range is {TRUE, FALSE}
+* prefix and infix relation
+	* 3 < 5 	// less-than relation, infix notation
+	* a R b		// infix
+	* R(a,b)	// prefix
+	* eg 2+3 vs add(2,3)
+* Properties of relations
+	* symmetric relation
+		* aRb == bRa
+		* 2+3 == 3+2
+	* reflexive relation
+		* aRa
+* transitive relation
+		* xRy, yRz => xRz
+
+=== Graphs ===
+A set of points (aka nodes, vertices) and edges connecting pairs of points
+* directed graphs
+	* for automata
+* undirected graphs
+	* we will mainly work here in computational complexity
+G = (V,E)
+
+a - b
+   / \
+  c - d
+An undirected graph
+
+V = {a,b,c,d}
+E = { {a,b}, {b,c}, {c,d} }
+
+G' = (V',E')
+
+a -> b -> c
+A directed graph
+
+V' = {a, b, c}
+E' = {(a,b), (b,c)}
+
+== Paths ==
+A **path** P is a list of nodes connected by edges
+P = (b,c,d)
+
+A **simple path** is a path that does not repeat nodes
+
+== Cycle ==
+A path that starts and ends at the same node
+
+== Connected Graphs ==
+An undirected graph is **connected **when it has at least one vertex and there is a pth between every pair of vertices
+* A graph is connected when it has exactly one connected component
+* When there are no unreachable vertices 
+
+A directed graph is **strongly connected** if every vertex is reachable from every other vertex
+* strongly connected components of a directed graph form a partition into subgraphs that are strongly connected
+
+== Tree ==
+A graph that does not have cycling
+
+
+=== Strings and Language ===
+A **string **is a tuple of characters
+Characters are elements of an alphabet Σ
+* eg binary alphabet {0,1}
+	* 011010101 is a binary string
+* eg english alphabet
+	* afosdfosinec is an english string
+
+A **language **L over an alphabet Σ is a finite //set// of strings over the alphabet Σ
+
+* w is a string in language l
+	* w = w_{1}w_{2}w_{3}w_{4}...w_{k}
+	* where each w_{n} is a symbol (character) in Σ
+* length of w is |w| = k
+* reverse of w
+	* w^{R} = w_{k}...w_{3}w_{2}w_{1}
+* substring
+	* x is a string
+	* y is a string
+	* w = x*y = x_{1}x_{2}...x_{n}y_{1}y_{2}...y_{m}
+	* x and y are substrings of w
+
+=== Boolean logic ===
+AND, NOT, OR, XOR, ...
+Truth tables
+
+| a | b | a AND b | a => b | a &lt;=&gt; b |
+|---|---|---------|--------|:--------------|
+| F | F | F       | T      | T             |
+| F | T | F       | T      | F             |
+| T | F | F       | F      | F             |
+| T | T | T       | T      | T             |
+
+
+16 functions on two boolean varaibles
+* because 4 rows in the truth table, 2 options for each ro
+* 2^4 = 16
+AND, NAND, OR, NOR, XOR, XNOR, implies, !implies
+
+How many functions do we have on n boolean variables?
+2^(2^n)
+* 2^n is the number of rows in the truth table (# of permutations of the boolean string)
+* 2^2^n is the number of possible arrangements of these rows (# of permutations of these rows)
+
+=== Distributive Laws ===
+
+a x (b + c) = (a x b) + (a x c)
+P Λ (Q V R) = (P Λ Q) V (P Λ Q)
+
+
+
+

@@ -1,0 +1,19 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2019-08-20T15:02:37-05:00
+
+====== Home ======
+Created Tuesday 20 August 2019
+
+First time this prof is teaching the class at ou
+
+3 different areas in theory of computation
+* Automata
+* Computability
+* Computational Complexity
+
+
+Basic question we want to answer:
+* What are the fundamental capabilities and limitations of modern compters?
+
+

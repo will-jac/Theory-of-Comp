@@ -1,0 +1,109 @@
+Content-Type: text/x-zim-wiki
+Wiki-Format: zim 0.4
+Creation-Date: 2019-08-27T16:07:05-05:00
+
+====== Automata ======
+Created Tuesday 27 August 2019
+
+=== Regular Languages ===
+
+Strings that are accepted by some machine that does some kind of computation
+Simplest type of machine is called an **automata** - basically just finite state machines
+**Finite State Automaton** = **Finite State Machine**
+
+eg Turing machines
+Read a string and make transitions from state to state
+
+IE:
+
+
+=== Finite Automaton ===
+Specified by an 5-tuple (Q, Σ, δ, q_{0}, F)
+ Q: Finite set of states
+ Σ: Finite alphabet 
+ δ: Q x Σ → Q (transitive function)
+q_{0}: Starting state
+ F: Set of accepting states
+
+== Language ==
+The language of M is L(M) = A, the set of all strings accepted
+We can also say that:
+* M recognizes A
+* M accepts A
+
+== Example: ==
+w ends in 1
+ends with even number of 0's provided that we have at least one 1
+
+Language A = {w \in {0,1}* | w has an even number of 0's}
+
+Two states, expressing
+* The parity of 0's
+[insert diagram with two states, even / odd, 1 looping, 0 moves between]
+As a 5-Tuple:
+({q_{even}, q_{odd}}, {0,1}, δ, q_{even}, {q_{even}})
+where:
+δ: Q x Σ -> Q
+| State  | Symbol | Next State |
+|:-------|:-------|:-----------|
+| q_even | 0      | q_odd      |
+| q_even | 1      | q_even     |
+| q_odd  | 0      | q_even     |
+| q_odd  | 1      | q_odd      |
+
+
+so:
+| δ      | 0      | 1      |
+|--------|--------|--------|
+| q_even | q_odd  | q_even |
+| q_odd  | q_even | q_odd  |
+
+
+
+== Example: ==
+
+B = {w | w ends in a 1 or w = λ }
+
+[insert diagram of q_1, q_1, 1 loops on q_1, 0 loops on q_2, else transition]
+{{.\diagram.png?type=diagram}}
+
+== Example: ==
+
+C = {w | w starts with a 0 and ends with a 0 or starts with a 1 and ends with a 1 }
+Σ = {0,1}
+
+
+
+=== Formal Definitions of Computations ===
+Let M = (Q, Σ, δ, q_{0}, F) be a finite automaton
+Let w= w_1, w_2, ..., w_n be a string were each w_i is a member of Σ
+Then M **accepts** w if there is a sequence of states r_1, r_2, ... r_m in Q, such that:
+1. r_0 = q_0
+2. r_{i+1} = δ (r_i, w_{i+1}), for i \in {0,1,...,n-1}
+3. r_n \in F
+
+A language is called **regular** if there is some automaton that recognizes it
+
+==== Regular Operations ====
+Let A and B be languages
+We define the **regular operations** union, concatenation, star as follows:
+* Union, A U B = {w | w \in A or w \in B}
+* Concatenation, {{.\equation.png?type=equation}}
+* Star, A* = {w_1,..., w_k | each w_i \in A and k >= 0 integer}
+
+=== Closed Theorem ===
+The class of regular languages is closed under the union operation
+* If A_1 and A_2 are regular languages, so is A_1 U A_2
+
+== Proof idea: ==
+Construct a new finite automaton M that recognizes A_1 U A_2
+Simulate both M_1 (that recognizes A_1) and M_2 (that recognizes A_2) on any input w
+Then if either of the two accept, we accept, otherwise, we reject
+
+
+Something something wasn't paying attention
+
+
+
+
+
